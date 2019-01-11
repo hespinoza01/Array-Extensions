@@ -34,6 +34,8 @@ Array.prototype.sortByNumber = function(ascendent=true){
   for(let value of tempArray){
     this[cont++] = value;
   }
+
+  return this;
 };
 
 
@@ -65,6 +67,8 @@ Array.prototype.sortByString = function(ascendent=true){
   for(let value of tempArray){
     this[cont++] = value;
   }
+
+  return this;
 };
 
 // Get the first element of array
@@ -110,6 +114,51 @@ Array.prototype.isAllStrings = function(){
 // Check if a element exist or not (return true or false)
 Array.prototype.has = function(value){
   return (this.indexOf(value) !== -1);
+};
+
+// Get all numbers into array
+Array.prototype.getNumbers = function(){
+  let data = [];
+
+  for(let value of this){
+    if(typeof value === "number"){
+      data.push(value);
+    }
+  }
+
+  return data;
+};
+
+// Get all positives numbers into array
+Array.prototype.getAllPositiveNumbers = function(includeZeros=false){
+  let data = [],
+      condition = `value >${(includeZeros) ? '=' : ''} 0`;
+
+  for(let value of this){
+    if(typeof value === "number"){
+      if(eval(condition)){
+        data.push(value);
+      }
+    }
+  }
+
+  return data;
+};
+
+//Get all negatives numbers into array
+Array.prototype.getAllNegativeNumbers = function(includeZeros=false){
+  let data = [],
+      condition = `value <${(includeZeros) ? '=' : ''} 0`;
+
+  for(let value of this){
+    if(typeof value === "number"){
+      if(eval(condition)){
+        data.push(value);
+      }
+    }
+  }
+
+  return data;
 };
 
 
