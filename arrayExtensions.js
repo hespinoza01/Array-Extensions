@@ -87,6 +87,31 @@ Array.prototype.isEmpty = function(){
   return (this.length === 0);
 };
 
+// Verify if all the elements are numbers
+Array.prototype.isAllNumbers = function(){
+  for(let value of this){
+    if(typeof value !== "number")
+      return false;
+  }
+
+  return true;
+};
+
+// Verify if all the elements are strings
+Array.prototype.isAllStrings = function(){
+  for(let value of this){
+    if(typeof value !== "string")
+      return false;
+  }
+
+  return true;
+};
+
+// Check if a element exist or not (return true or false)
+Array.prototype.has = function(value){
+  return (this.indexOf(value) !== -1);
+};
+
 
 // Sort all numbers into array
 data.sortByNumber();
