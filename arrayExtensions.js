@@ -67,6 +67,16 @@ Array.prototype.sortByString = function(ascendent=true){
   }
 };
 
+// Get the first element of array
+Array.prototype.first = function(){
+  return this[0];
+};
+
+// Get the last element of array
+Array.prototype.last = function(){
+  return this[this.length - 1];
+};
+
 
 // Sort all numbers into array
 data.sortByNumber();
