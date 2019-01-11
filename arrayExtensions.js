@@ -77,6 +77,16 @@ Array.prototype.last = function(){
   return this[this.length - 1];
 };
 
+// Print the array
+Array.prototype.print = function(){
+  console.log(this);
+};
+
+// Verify is the array content values
+Array.prototype.isEmpty = function(){
+  return (this.length === 0);
+};
+
 
 // Sort all numbers into array
 data.sortByNumber();
