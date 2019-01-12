@@ -236,6 +236,74 @@ Array.prototype.middleNumber = function(){
   return (data.length % 2 === 0) ? [data[middleIndex - 1], data[middleIndex]] : data[middleIndex];
 };
 
+// Get sum value of elements into array
+Array.prototype.sum = function(){
+  let data = this.getNumbers();
+      sum = 0;
+
+  for(let value of data){
+    sum += value;
+  }
+
+  return sum;
+};
+
+// Get a copy from array
+Array.prototype.copy = function(){
+  return Array.from(this);
+};
+
+// Get average value of elements into array
+Array.prototype.average = function(){
+  return this.sum() / this.length;
+};
+
+// Get media value of elements into array
+Array.prototype.median = function(){
+  let data = this.getNumbers().sortByNumber(),
+      length = data.length,
+      middleLength = length / 2;
+
+  if(length % 2 === 0){
+    return (data[middleLength - 1] + data[middleLength]) / 2;
+  }
+
+  middleLength = (length - 1) / 2;
+  return data[middleLength];
+};
+
+// Get mode of the array
+Array.prototype.mode = function(){
+  let data = this.getNumbers(),
+      modes = [],
+      count = {},
+      maxIndex = 0;
+
+  for(let value of data){
+    let number = value;
+    count[number] = (count[number] || 0) + 1;
+
+    if(count[number] > maxIndex){
+      maxIndex = count[number];
+    }
+  }
+
+  for(let value of data){
+    if(count.hasOwnProperty(value)){
+      if(count[value] === maxIndex){
+        modes.push(value);
+      }
+    }
+  }
+
+  return modes;
+};
+
+// Get range of array
+Array.prototype.range = function(){
+
+};
+
 
 // Sort all numbers into array
 data.sortByNumber();
