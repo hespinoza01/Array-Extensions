@@ -182,6 +182,60 @@ Array.prototype.getWhile =  function(toEval='true'){
   return data;
 };
 
+// Get random element into array
+Array.prototype.getRandomElement = function(){
+  let min = 0,
+      max = this.length - 1,
+      random = Math.floor( Math.random() * (+max - +min) ) + +min;
+
+  return this[random];
+};
+
+// Get the min value into array
+Array.prototype.minNumber = function(){
+  let data = this.getNumbers();
+
+  if(!data.length){ return undefined; }
+
+  let minValue = data[0];
+
+  for(let value of this){
+    if(minValue > value){
+      minValue = value;
+    }
+  }
+
+  return minValue;
+};
+
+// Get the max value into array
+Array.prototype.maxNumber = function(){
+  let data = this.getNumbers();
+
+  if(!data.length){ return undefined; }
+
+  let maxValue = data[0];
+
+  for(let value of this){
+    if(maxValue < value){
+      maxValue = value;
+    }
+  }
+
+  return maxValue;
+};
+
+// Get the middle value into array
+Array.prototype.middleNumber = function(){
+  let data = this.getNumbers(),
+      middleIndex = Math.floor(data.length / 2);
+
+  if(!data.length){ return undefined; }
+
+  data.sortByNumber();
+  return (data.length % 2 === 0) ? [data[middleIndex - 1], data[middleIndex]] : data[middleIndex];
+};
+
 
 // Sort all numbers into array
 data.sortByNumber();
