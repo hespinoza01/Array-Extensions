@@ -161,6 +161,27 @@ Array.prototype.getAllNegativeNumbers = function(includeZeros=false){
   return data;
 };
 
+// Get all values while the condition argument as string is true
+Array.prototype.getWhile =  function(toEval='true'){
+  let data = [],
+      condition = toEval.replace('?', 'value');
+
+  try {
+
+    for(let value of this){
+      if(eval(condition)){
+        data.push(value);
+      }
+    }
+
+  }catch (e) {
+    console.log(`Error in condition argument:\n${e}`);
+    return undefined;
+  }
+
+  return data;
+};
+
 
 // Sort all numbers into array
 data.sortByNumber();
