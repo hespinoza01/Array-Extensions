@@ -3,8 +3,7 @@
   Description: Simple code to add a Array.prototype some more util features
 */
 
-let data = [2,8,4,"a","d","z",5,7,1],
-    data2 = ["b", "c", "f"];
+
 
 // Sort all numbers into array, all data that is't number is pushing to end
 Array.prototype.sortByNumber = function(ascendent=true){
@@ -37,7 +36,6 @@ Array.prototype.sortByNumber = function(ascendent=true){
 
   return this;
 };
-
 
 // Sort all strings into array, all data that is't string is puching to end
 Array.prototype.sortByString = function(ascendent=true){
@@ -299,16 +297,64 @@ Array.prototype.mode = function(){
   return modes;
 };
 
-// Get range of array
-Array.prototype.range = function(){
+// Get rangeInterval of array
+Array.prototype.rangeInterval = function(){
+  let data = this.getNumbers().sortByNumber();
 
+  return (!data.length) ? undefined : [data[0], data[data.length - 1]];
 };
 
+// Return the union of two arrays
+Array.prototype.union = function(otherArray){
+  if(!Array.isArray(otherArray)){
+    console.error("Param pass is not Array");
+    return undefined;
+  }
 
-// Sort all numbers into array
-data.sortByNumber();
-data2.sortByNumber();
+  let data = [],
+      firstArray = this.copy(),
+      secondArray = otherArray.copy();
 
-// Sort all strings into array
-data.sortByString(true);
-data2.sortByString();
+  for(let value of firstArray){ data.push(value); }
+  for(let value of secondArray){ data.push(value); }
+
+  return data;
+};
+
+// Return the intersection of two sets
+Array.prototype.intersection = function(otherArray){
+  if(!Array.isArray(otherArray)){
+    console.error("Param pass is not Array");
+    return undefined;
+  }
+
+  let data = [],
+    firstArray = this.copy();
+
+  for(let value of firstArray){
+    if(otherArray.has(value)){
+      data.push(value);
+    }
+  }
+
+  return data;
+};
+
+// Return the difference of two sets
+Array.prototype.difference = function(otherArray){
+  if(!Array.isArray(otherArray)){
+    console.error("Param pass is not Array");
+    return undefined;
+  }
+
+  let data = [],
+      firstArray = this.copy();
+
+  for(let value of firstArray){
+    if(!otherArray.has(value)){
+      data.push(value);
+    }
+  }
+
+  return data;
+};
