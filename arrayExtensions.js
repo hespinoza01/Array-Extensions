@@ -189,6 +189,48 @@ Array.prototype.getRandomElement = function(){
   return this[random];
 };
 
+// Shuffle all elements into array
+Array.prototype.shuffle = function() {
+    let i = this.length, j, temp;
+
+    // si no hay elementos en el arreglo, se termina la función
+    if (i == 0) return this;
+
+    for (i = i - 1; i > 0; i--) {
+        j = Math.floor( Math.random() * (i + 1) );
+        temp = this[i];
+        this[i] = this[j];
+        this[j] = temp;
+    }
+
+    return this;
+}
+
+// Shuffle all elements into array using Sattolo algorithm
+Array.prototype.sattolo = function() {
+    const len = this.length;
+
+    for (let i = 0; i < len - 1; i++) { // 0 to n -1, exclusive because the last item doesn't need swapping
+        let j = Math.floor(Math.random() * (len-(i+1)))+(i+1); // i+1 to len, exclusive
+        const temp = this[i];
+        this[i] = this[j];
+        this[j] = temp;
+    }
+    
+    return this;
+}
+
+// check is a array is equals to another
+Array.prototype.equalsTo = function(array) {
+    if (this.length !== array.length) return false;
+
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] !== array[i]) return false;
+    }
+
+    return true;
+}
+
 // Get the min value into array
 Array.prototype.minNumber = function(){
   let data = this.getNumbers();
